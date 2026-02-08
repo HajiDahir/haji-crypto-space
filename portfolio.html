@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Portfolio Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        form { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Crypto Portfolio Tracker</h1>
+    <form id="portfolio-form">
+        <input type="text" id="crypto-name" placeholder="Cryptocurrency Name" required>
+        <input type="number" id="crypto-amount" placeholder="Amount" required>
+        <input type="number" id="crypto-price" placeholder="Price" required>
+        <button type="submit">Add to Portfolio</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Total Value</th>
+            </tr>
+        </thead>
+        <tbody id="portfolio-table">
+        </tbody>
+    </table>
+    <script>
+        const form = document.getElementById('portfolio-form');
+        const portfolioTable = document.getElementById('portfolio-table');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('crypto-name').value;
+            const amount = parseFloat(document.getElementById('crypto-amount').value);
+            const price = parseFloat(document.getElementById('crypto-price').value);
+            const totalValue = amount * price;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${name}</td><td>${amount}</td><td>${price.toFixed(2)}</td><td>${totalValue.toFixed(2)}</td>`;
+            portfolioTable.appendChild(row);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
