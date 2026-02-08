@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakat Calculator - Haji Crypto Space</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #009688; 
+            text-align: center;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            font-weight: bold; 
+            margin-bottom: 8px; 
+            color: #009688;
+        }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button { 
+            padding: 12px 20px; 
+            background-color: #009688; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover { 
+            background-color: #00796b; 
+        }
+        .result { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background-color: #e8f5e9; 
+            border-left: 4px solid #009688;
+            border-radius: 4px;
+            display: none;
+        }
+        .result.show { 
+            display: block; 
+        }
+        .result h2 { 
+            color: #009688; 
+            margin-top: 0;
+        }
+        .calculation {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .calculation p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .zakat-due {
+            font-size: 28px;
+            font-weight: bold;
+            color: #009688;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .info-section {
+            margin-top: 30px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .info-section h3 {
+            color: #009688;
+            margin-top: 0;
+        }
+        .info-section ul {
+            padding-left: 20px;
+        }
+        .info-section li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #009688;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕌 Zakat Calculator</h1>
+        <p style="text-align: center; color: #666;">Calculate your Zakat obligation on cryptocurrency holdings</p>
+        
+        <form id="zakat-form">
+            <div class="form-group">
+                <label for="total-wealth">Total Cryptocurrency Value (USD):</label>
+                <input type="number" id="total-wealth" placeholder="Enter total value" step="0.01" min="0" required>
+            </div>
+            <button type="submit">Calculate Zakat</button>
+        </form>
+
+        <div id="zakat-result" class="result">
+            <h2>✅ Your Zakat Calculation</h2>
+            <div class="calculation">
+                <p><strong>Total Wealth:</strong> <span id="display-wealth">$0.00</span></p>
+                <p><strong>Zakat Rate:</strong> 2.5%</p>
+                <div class="zakat-due">
+                    Zakat Due: <span id="display-zakat">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>📖 Understanding Zakat</h3>
+            <ul>
+                <li><strong>What is Zakat?</strong> Zakat is one of the Five Pillars of Islam.</li>
+                <li><strong>Rate:</strong> The standard zakat rate is 2.5% of your total eligible wealth.</li>
+                <li><strong>Cryptocurrency:</strong> Cryptocurrencies are considered wealth subject to zakat.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('zakat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const totalWealth = parseFloat(document.getElementById('total-wealth').value);
+            const zakatDue = totalWealth * 0.025;
+            document.getElementById('display-wealth').textContent = '$' + totalWealth.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('display-zakat').textContent = '$' + zakatDue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('zakat-result').classList.add('show');
+        });
+    </script>
+</body>
+</html>
